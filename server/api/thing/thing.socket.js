@@ -10,6 +10,7 @@ import ThingEvents from './thing.events';
 var events = ['save', 'remove'];
 
 export function register(socket) {
+  console.log("register socket to things");
   // Bind model events to socket events
   for(var i = 0, eventsLength = events.length; i < eventsLength; i++) {
     var event = events[i];
@@ -23,6 +24,7 @@ export function register(socket) {
 
 function createListener(event, socket) {
   return function(doc) {
+    console.log("emit event", doc);
     socket.emit(event, doc);
   };
 }

@@ -31,10 +31,20 @@ export class MainController {
       });
       this.newThing = '';
     }
+    this.getThings();
+  }
+
+  getThings() {
+    this.$http.get('/api/things')
+      .then(response => {
+        this.awesomeThings = response.data;
+        this.socket.syncUpdates('thing', this.awesomeThings);
+      });
   }
 
   deleteThing(thing) {
     this.$http.delete(`/api/things/${thing._id}`);
+    this.getThings();
   }
 }
 
