@@ -20,7 +20,19 @@ var UserSchema = new Schema({
     required: true
   },
   provider: String,
-  salt: String
+  salt: String,
+  phone: String,
+  address: String,
+  city: String,
+  zipCode: String,
+  accountType: {
+    type: String,
+    enum: [
+      'Freight Forwarder', 'Customs Broker', 'Freight Broker',
+      'BCO', 'Chassis Pool',
+      'Container Terminal Operator', 'Marine Container Carrier',
+      'Trucking Company', 'Owner Operator', 'Driver']
+  }
 });
 
 /**

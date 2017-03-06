@@ -26,11 +26,13 @@ import main from './main/main.component';
 import constants from './app.constants';
 import util from '../components/util/util.module';
 import socket from '../components/socket/socket.service';
+import JobsComponent from './jobs/jobs.component';
+import {ngTableModule} from 'ng-table';
 
 import './app.css';
 
 angular.module('intelmodalApp', [ngCookies, ngResource, ngSanitize, 'btford.socket-io', ngRoute,
-  uiBootstrap, _Auth, account, admin, navbar, footer, main, constants, socket, util
+  uiBootstrap, ngTableModule.name, _Auth, account, admin,JobsComponent, navbar, footer, main, constants, socket, util
 ])
   .config(routeConfig)
   .run(function($rootScope, $location, Auth) {

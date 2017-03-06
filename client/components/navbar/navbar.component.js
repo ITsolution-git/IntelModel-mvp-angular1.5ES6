@@ -7,7 +7,12 @@ export class NavbarComponent {
   menu = [{
     title: 'Home',
     link: '/'
-  }];
+  },
+    {
+      title: 'Jobs',
+      link: '/jobs'
+    }
+  ];
 
   isCollapsed = true;
 
