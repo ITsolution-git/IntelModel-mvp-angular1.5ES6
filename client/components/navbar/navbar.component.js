@@ -11,7 +11,12 @@ export class NavbarComponent {
     {
       title: 'Jobs',
       link: '/jobs'
+    },
+    {
+      title: 'Playground',
+      link: '/playground'
     }
+
   ];
 
   isCollapsed = true;

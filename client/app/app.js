@@ -28,13 +28,14 @@ import util from '../components/util/util.module';
 import socket from '../components/socket/socket.service';
 import JobsComponent from './jobs/jobs.component';
 import ExportJobComponent from './jobs/export-job/export-job.component';
+import Playground from './playground/playground.component';
 import ImportJobComponent from './jobs/import-job/import-job.component';
 import {ngTableModule} from 'ng-table';
 
 import './app.css';
 
 angular.module('intelmodalApp', [ngCookies, ngResource, ngSanitize, 'btford.socket-io', ngRoute,
-  uiBootstrap, ngTableModule.name, _Auth, account, admin,JobsComponent, ExportJobComponent, ImportJobComponent, navbar, footer, main, constants, socket, util
+  uiBootstrap, ngTableModule.name, _Auth, account, admin,JobsComponent, ExportJobComponent, ImportJobComponent, Playground, navbar, footer, main, constants, socket, util
 ])
   .config(routeConfig)
   .run(function($rootScope, $location, Auth) {
