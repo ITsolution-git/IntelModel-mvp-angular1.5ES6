@@ -12,6 +12,7 @@
     "angular-route": "~1.6.0",
     "angular-sanitize": "~1.6.0",
     "angular-socket-io": "~0.7.0",
+    "angular-timeline": "^1.7.0",
     "angular-ui-bootstrap": "^2.0.1",
     "angular-validation-match": "^1.9.0",
     "babel-polyfill": "^6.7.2",
