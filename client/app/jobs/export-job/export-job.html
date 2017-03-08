@@ -1,7 +1,7 @@
 <div class="container">
-
-<h2>Add Export Job</h2>
-	
+<div class="panel panel-primary">
+  <div class="panel-heading"><b>Add Export Job</b></div>
+  <div class="panel-body">	
 <table class="table">
 <tr> <td>Client Reference #</td>
 <td><input type="text" class="form-control" placeholder="Reference #"></td>
@@ -43,9 +43,12 @@
 </tr>
 </table>
 </div>
-<div class="container">
-
-<button class="btn btn-danger pull-left" type="button" ng-click="exportJobCtrl.cancel()">Cancel</button>
+<div class="panel-footer">
+<div>
+<button class="btn btn-danger" type="button" ng-click="exportJobCtrl.cancel()">Cancel</button>
 <button class="btn btn-success pull-right" type="button" ng-click="exportJobCtrl.save()">Save</button>
-
 </div>
+</div>
+</div>
+</div>
+
