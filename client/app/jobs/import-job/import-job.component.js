@@ -7,22 +7,27 @@ import routes from './import-job.routes';
 
 export class ImportJobComponent {
     /*@ngInject*/
-    constructor() {
+    constructor($routeParams,$location) {
         this.message = 'Hello';
+        this.routeParams = $routeParams;
+        this.location = $location;
     }
 
     $onInit() {
-        this.items = this.resolve.items;
+        
     }
 
-    ok() {
-        console.info("in handle close");
-        this.modalInstance.close(['1']);
+    save() {
+
+        console.log("saved");
+        this.location.path("/jobs");
+
     };
 
     cancel () {
-        console.info("in handle dismiss");
-        this.modalInstance.dismiss("cancel");
+
+        console.log("saved");
+        this.location.path("/jobs");
     };
 }
 
@@ -30,10 +35,6 @@ export default angular.module('intelmodalApp.importJob', [ngRoute])
     .config(routes)
     .component('importJob', {
         template: require('./import-job.html'),
-        bindings: {
-            modalInstance: "<",
-            resolve: "<"
-        },
         controller: ImportJobComponent,
         controllerAs: 'importJobCtrl'
     })

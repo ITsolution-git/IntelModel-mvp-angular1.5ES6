@@ -1,16 +1,56 @@
+<div class="container">
+<div class="panel panel-primary">
+  <div class="panel-heading"><b>Add Import Job</b></div>
+  <div class="panel-body">
+ 
+<table class="table">
+
+<tr> <td>Reference #</td>
+<td><input type="text" class="form-control" placeholder="Reference #"></td>
+<td>BL #</td>
+<td><input type="text" class="form-control" placeholder="Reference #"></td>
+</tr> 
+<tr> <td>Port of Discharge #</td>
+<td><input type="text" class="form-control" placeholder="LB"></td>
+<td>Date of Discharge</td>
+<td><div class="form-group">
+    <input type="text" class="form-control" uib-datepicker-popup="{{importJobCtrl.format}}" ng-model="importJobCtrl.date" /></div>
+</td>
+</tr> 
+<tr> <td>Marine Carrier #</td>
+<td><input type="text" class="form-control" placeholder="Carrier #"></td>
+<td>Terminal</td>
+<td><input type="text" class="form-control" placeholder="ITS"></td>
+</tr> 
+<tr> <td>Vessal Name</td>
+<td><input type="text" class="form-control" placeholder="Cosco"></td>
+<td>Voyage #</td>
+<td><input type="text" class="form-control" placeholder="Voyage #"></td>
+</tr> 
+<tr> <td>Shipper</td>
+<td><input type="text" class="form-control" placeholder="Shipper"></td>
+<td>Consignee</td>
+<td><input type="text" class="form-control" placeholder="Consignee name"></td>
+</tr> 
+<tr> <td>Last Free Date(LFD)</td>
+<td><input type="date" class="form-control" placeholder="03/21/2017"></td>
+<td>LFD Return</td>
+<td><input type="date" class="form-control" placeholder="03/24/2017"></td>
+</tr> 
+<tr> <td>Job Type</td>
+<td><label class="radio-inline"><input type="radio" aria-label="..."> Live Load</label>
+<label class="radio-inline"><input type="radio" aria-label="..."> Drop and Pickup</label></td>
+<td>Containers</td>
+<td><input type="email" class="form-control" placeholder="Reference #"></td>
+</tr>
+</table>
+</div>
+
+<div class="panel-footer">
 <div>
-    <div class="modal-header">
-        <h3 class="modal-title" id="modal-title">I'm a modal!</h3>
-    </div>
-    <div class="modal-body" id="modal-body">
-        <ul>
-            <li ng-repeat="item in importJobCtrl.items">
-                <a href="#">{{ item }}</a>
-            </li>
-        </ul>
-    </div>
-    <div class="modal-footer">
-        <button class="btn btn-primary" type="button" ng-click="importJobCtrl.ok()">OK</button>
-        <button class="btn btn-warning" type="button" ng-click="importJobCtrl.cancel()">Cancel</button>
-    </div>
+<button class="btn btn-danger" type="button" ng-click="importJobCtrl.cancel()">Cancel</button>
+<button class="btn btn-success pull-right" type="button" ng-click="importJobCtrl.save()">Save</button>
+</div>
+</div>
+</div>
 </div>
