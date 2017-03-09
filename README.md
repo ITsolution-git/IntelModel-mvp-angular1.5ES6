@@ -28,3 +28,5 @@ Run `gulp build` for building and `gulp serve` for preview.
 Running `npm test` will run the unit tests with karma.
 
 # Mock Up/Placeholder routes have been created for illustration purpose.
+
+# The frontend development will be checked in the "frontend" branch
