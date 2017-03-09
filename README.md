@@ -26,4 +26,5 @@ Run `gulp build` for building and `gulp serve` for preview.
 ## Testing
 
 Running `npm test` will run the unit tests with karma.
-# MV
+
+# Mock Up/Placeholder routes have been created for illustration purpose.
