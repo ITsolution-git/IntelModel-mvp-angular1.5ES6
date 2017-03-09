@@ -30,13 +30,17 @@ import JobsComponent from './jobs/jobs.component';
 import ExportJobComponent from './jobs/export-job/export-job.component';
 import Playground from './playground/playground.component';
 import ImportJobComponent from './jobs/import-job/import-job.component';
+import DispatchComponent from './dispatch/dispatch.component';
 import {ngTableModule} from 'ng-table';
 import 'angular-timeline';
 
 import './app.css';
 
 angular.module('intelmodalApp', [ngCookies, ngResource, ngSanitize, 'btford.socket-io', ngRoute,
-  uiBootstrap, ngTableModule.name, 'angular-timeline', _Auth, account, admin, JobsComponent, ExportJobComponent, ImportJobComponent, Playground, navbar, footer, main, constants, socket, util
+  uiBootstrap, ngTableModule.name, 'angular-timeline', _Auth, account, admin, 
+  JobsComponent, ExportJobComponent, ImportJobComponent, 
+  DispatchComponent,
+  Playground, navbar, footer, main, constants, socket, util
 ])
   .config(routeConfig)
   .run(function($rootScope, $location, Auth) {

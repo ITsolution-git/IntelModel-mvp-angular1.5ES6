@@ -12,6 +12,10 @@ export class NavbarComponent {
       title: 'Jobs',
       link: '/jobs'
     },
+        {
+      title: 'Dispatch',
+      link: '/dispatch'
+    },
     {
       title: 'Playground',
       link: '/playground'
