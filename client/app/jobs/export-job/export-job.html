@@ -1,6 +1,6 @@
 <div class="container">
     <div class="panel panel-info">
-        <div class="panel-heading"><b>Add Export Job</b></div>
+        <div class="panel-heading"><b>Export Job: $480.00</b></div>
         <div class="panel-body">
             <table class="table">
                 <tr> <td>Client Reference #</td>
@@ -14,6 +14,10 @@
                     <td><div class="form-group">
                         <input type="text" class="form-control" uib-datepicker-popup="{{exportJobCtrl.format}}" ng-model="exportJobCtrl.date" /></div>
                     </td>
+                </tr>
+                <tr> <td>Pick Up Location</td>
+                    <td colspan="3"><input type="text" class="form-control" placeholder="location"></td>
+                    
                 </tr>
                 <tr> <td>Marine Carrier #</td>
                     <td><input type="text" class="form-control" placeholder="Carrier #"></td>
@@ -31,22 +35,26 @@
                     <td><input type="text" class="form-control" placeholder="Consignee name"></td>
                 </tr>
                 <tr> <td>Empty Start Date</td>
-                    <td><input type="date" class="form-control" placeholder="03/21/2017"></td>
+                    <td>Date Picker</td>
                     <td>Full Start Date/Cut off Date</td>
-                    <td><input type="date" class="form-control" placeholder="03/24/2017"></td>
+                    <td>Date picker </td>
                 </tr>
                 <tr> <td>Job Type</td>
-                    <td><label class="radio-inline"><input type="radio" aria-label="..."> Live Load</label>
+                    <td colspan="3"><label class="radio-inline"><input type="radio" aria-label="..."> Live Load</label>
                         <label class="radio-inline"><input type="radio" aria-label="..."> Drop and Pickup</label></td>
-                    <td>Containers</td>
-                    <td><input type="email" class="form-control" placeholder="Reference #"></td>
+                </tr>
+                <tr> <td>Containers</td>
+                    <td colspan="3">To be displayed</td>
                 </tr>
             </table>
         </div>
         <div class="panel-footer">
             <div>
-                <button class="btn btn-danger" type="button" ng-click="exportJobCtrl.cancel()">Cancel</button>
-                <button class="btn btn-success pull-right" type="button" ng-click="exportJobCtrl.save()">Save</button>
+                <button class="btn" type="button" ng-click="exportJobCtrl.cancel()">Cancel</button>
+                <button class="btn" type="button" ng-click="exportJobCtrl.save()">Save</button>
+                <button class="btn" type="button" ng-click="exportJobCtrl.sendForQuote()">Send</button>
+                <button class="btn pull-right" type="button" ng-click="exportJobCtrl.confirmQuote()"> Confirm</button>
+            </div>
             </div>
         </div>
     </div>

@@ -7,6 +7,14 @@ export default class AdminController {
     this.users = User.query();
   }
 
+  activate(user) {
+
+  }
+
+  deactivate(user) {
+
+  }
+  
   delete(user) {
     user.$remove();
     this.users.splice(this.users.indexOf(user), 1);

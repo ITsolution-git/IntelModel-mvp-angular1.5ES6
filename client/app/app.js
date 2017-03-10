@@ -28,9 +28,12 @@ import util from '../components/util/util.module';
 import socket from '../components/socket/socket.service';
 import JobsComponent from './jobs/jobs.component';
 import ExportJobComponent from './jobs/export-job/export-job.component';
+import CrossTownComponent from './jobs/cross-town/cross-town.component'
 import Playground from './playground/playground.component';
 import ImportJobComponent from './jobs/import-job/import-job.component';
 import DispatchComponent from './dispatch/dispatch.component';
+import AssignmentComponent from './assignment/assignment.component';
+import ReportsComponent from './reports/reports.component';
 import {ngTableModule} from 'ng-table';
 import 'angular-timeline';
 
@@ -38,8 +41,10 @@ import './app.css';
 
 angular.module('intelmodalApp', [ngCookies, ngResource, ngSanitize, 'btford.socket-io', ngRoute,
   uiBootstrap, ngTableModule.name, 'angular-timeline', _Auth, account, admin, 
-  JobsComponent, ExportJobComponent, ImportJobComponent, 
+  JobsComponent, ExportJobComponent, ImportJobComponent, CrossTownComponent,
   DispatchComponent,
+  AssignmentComponent,
+  ReportsComponent,
   Playground, navbar, footer, main, constants, socket, util
 ])
   .config(routeConfig)

@@ -4,22 +4,30 @@
     <p role="group" aria-label="...">
     <a class="btn btn-default"  role="button" href="/jobs/importJob/?type=new"><i class="fa fa-plus" aria-hidden="true"></i> Import Job</a>
     <a class="btn btn-default"  role="button" href="/jobs/exportJob/?type=new"><i class="fa fa-plus" aria-hidden="true"></i> Export Job</a>
-    <a class="btn btn-default"  role="button"><i class="fa fa-plus" aria-hidden="true"></i> Cross Town Job</a>
+    <a class="btn btn-default"  role="button" href="/jobs/cross-down/?type=new"><i class="fa fa-plus" aria-hidden="true"></i> Cross Town Job</a>
     </p>
   </div>
   <div class="row">
   <table ng-table="jobsCtrl.tableParams" class="table table-condensed" show-filter="true">
     <tr ng-repeat="job in $data">
       <td title="'Job'" filter="{ name: 'text'}" sortable="'name'"><a href="#" ng-click="display(job)">{{job.name}}</a></td>
-      <td title="'Overall Status'" sortable="'status'">
-        <small><em>{{job.status}}</em></small>
-        <uib-progressbar animate="false" value="job.progress" type="success"></uib-progressbar>
+      <td title="'Status'" sortable="'status'">
+          To Be Displayed
       </td>
-      <td title="'Containers'" sortable="'containers'">{{job.containers.length}}</td>
-      <td title="'Type'" sortable="'type'">{{job.type}}</td>
-      <td title="'Updated'" sortable="'updated'">{{job.updated}}</td>
+      <td title="'Containers'" sortable="'containers'">{{job.description.containers.length}}, but more details</td>
+      <td title="'Type'" sortable="'type'">{{job.description.type}}, as representive icon</td>
+      <td title="'Updated'" sortable="'updated'">{{job.updated}}, <br>should be displayed like " 3 mins ago"</td>
     </tr>
   </table>
   </div>
 
 </div>
+
+<br>
+<pre>
+
+
+
+This is the main page for customers (role='user').
+
+</pre>

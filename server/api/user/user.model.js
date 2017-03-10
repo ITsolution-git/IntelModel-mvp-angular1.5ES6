@@ -28,11 +28,13 @@ var UserSchema = new Schema({
   accountType: {
     type: String,
     enum: [
-      'Freight Forwarder', 'Customs Broker', 'Freight Broker',
-      'BCO', 'Chassis Pool',
-      'Container Terminal Operator', 'Marine Container Carrier',
-      'Trucking Company', 'Owner Operator', 'Driver']
-  }
+      'Container Terminal Operator', 'Marine Container Carrier', 'Freight Forwarder', 'Customs Broker', 'Freight Broker', 'BCO', 'Chassis Pool', // user
+      'Dispatcher', //dispatcher    
+      'Trucking Company', 'Owner Operator', 'Driver' //carrier
+      ]
+  },
+
+  authorized: {type: Boolean, default: false}
 });
 
 /**

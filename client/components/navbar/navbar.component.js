@@ -16,9 +16,14 @@ export class NavbarComponent {
       title: 'Dispatch',
       link: '/dispatch'
     },
+
     {
-      title: 'Playground',
-      link: '/playground'
+      title: 'Trucking Assignments',
+      link: '/assignment'
+    },
+    {
+      title: 'Reports',
+      link: '/reports'
     }
 
   ];

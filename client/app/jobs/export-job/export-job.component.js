@@ -21,14 +21,20 @@ export class ExportJobComponent {
   }
 
   save() {
-    console.log("saved");
-    this.location.path("/jobs");
+
   };
 
   cancel () {
-      console.log("saved");
-      this.location.path("/jobs");
+
   };
+
+  sendForQuote() {
+
+  }
+
+  confirmQuote() {
+
+  }
 }
 
 export default angular.module('intelmodalApp.exportJob', [ngRoute])
