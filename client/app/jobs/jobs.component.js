@@ -13,7 +13,7 @@ export class JobsComponent {
     //sample data for UI display purpose.
     var data = [
       { _id:1,
-        name: "Job1", status: 'In Transit', progress: 40,
+        name: "Job1", status: 'In Transit/Dispatch', progress: 40,
         alerts: [{msg: 'Approaching LFD', date: new Date()}],
         description: {
           type: 'Import',
@@ -32,18 +32,18 @@ export class JobsComponent {
           lastFreeReturnDate: new Date(),
           jobType: 'Live Load',
           containers: [
-          {'number':'XXXU1234700', type: '22GP', status: 'In Transit', readyForDispatch: true, 
+          {'number':'XXXU1234700', type: '22GP', status: 'In Transit', readyForDispatch: true,
             progress:90,  POD:'', location: {lat: 33.8395, lng: -118.354}, updated: new Date(), note:'NOTE'},
-          {'number':'XXMU1234600', type: '42GP', status: 'Dispatched', readyForDispatch: true, 
-            progress:15,  POD:'', location: {}, updated: new Date(), note:'NOTE'},
-          {'number':'XNOU1234500', type: '22GP', status: 'Dispatched', readyForDispatch: true, 
+          {'number':'XXMU1234600', type: '42GP', status: 'In Transit', readyForDispatch: true,
+            progress:15,  POD:'', location: {lat: 33.7395, lng: -118.254}, updated: new Date(), note:'NOTE'},
+          {'number':'XNOU1234500', type: '22GP', status: 'Dispatched', readyForDispatch: true,
             progress:15,  POD:'', location: {}, updated: new Date(), note:'NOTE'}
-          ],
+          ]
         },
-        constrains: { before: new Date(), after: null,  on: null,  conditions: [], remarks:'waiting for container to be ready to dispatch'},  
+        constrains: { before: new Date(), after: null,  on: null,  conditions: [], remarks:'waiting for container to be ready to dispatch'},
         /**
             container type: 22GP, 22PC, 22U1, 22VP, 22RT, 22TO
-              42GP, 42PC, 42U1, 40VP, 42HQ, 
+              42GP, 42PC, 42U1, 40VP, 42HQ,
               L5GO
         */
         activities: [{
@@ -68,7 +68,7 @@ export class JobsComponent {
           note: 'note',
           confirmed: true
         },
-        updated: new Date() 
+        updated: new Date()
         },
 
       { _id:2,name: "Job2", status: 'NEW', progress: 0,
@@ -90,13 +90,13 @@ export class JobsComponent {
           lastFreeReturnDate: new Date(),
           jobType: 'Pick up & Drop',
           containers: [
-          {'number':'XXXU1234700', type: '22GP', status: '', readyForDispatch: false, 
+          {'number':'XXXU1234700', type: '22GP', status: 'NEW', readyForDispatch: false,
             progress:0,  POD:'', location: {}, updated: new Date(), note:'NOTE'},
-          {'number':'XXMU1234600', type: '22GP', status: '', readyForDispatch: false, 
+          {'number':'XXMU1234600', type: '22GP', status: 'NEW', readyForDispatch: false,
             progress:0,  POD:'', location: {}, updated: new Date(), note:'NOTE'}
-          ],
+          ]
         },
-        constrains: { before: new Date(), after: null,  on: null,  conditions: [], remarks:'waiting for container to be ready to dispatch'},  
+        constrains: { before: new Date(), after: null,  on: null,  conditions: [], remarks:'waiting for container to be ready to dispatch'},
         activities: [{
             type: 'info',
             title: 'XXMU1234600 Dispatched',
@@ -108,8 +108,8 @@ export class JobsComponent {
             when: '12 hours ago via Twitter',
             content: 'More awesome content.'
         }],
-        //qupte: If a job is sent, there will be no quote.
-        updated: new Date() 
+        //quote: If a job is sent, there will be no quote.
+        updated: new Date()
         },
 
       { _id:3,name: "Job3", status: 'NEW', progress: 0,
@@ -132,13 +132,13 @@ export class JobsComponent {
           cutOffDate: new Date(),
           jobType: 'Pick up & Drop',
           containers: [
-          {'number':'', type: '22GP', status: '', readyForDispatch: false, 
+          {'number':'', type: '22GP', status: 'NEW', readyForDispatch: false,
             progress:0,  POD:'', location: {}, updated: new Date(), note:'NOTE'},
-          {'number':'', type: '42GP', status: '', readyForDispatch: false, 
+          {'number':'', type: '42GP', status: 'NEW', readyForDispatch: false,
             progress:0,  POD:'', location: {}, updated: new Date(), note:'NOTE'}
           ]
         },
-        constrains: { before: new Date(), after: null,  on: null,  conditions: [], remarks:'waiting for container to be ready to dispatch'},  
+        constrains: { before: new Date(), after: null,  on: null,  conditions: [], remarks:'waiting for container to be ready to dispatch'},
         activities: [{
             type: 'info',
             title: 'XXMU1234600 Dispatched',
@@ -151,7 +151,7 @@ export class JobsComponent {
             content: 'More awesome content.'
         }],
         //qupte: If a job is sent, there will be no quote.
-        updated: new Date() 
+        updated: new Date()
         },
 
       { _id:4,name: "Job4", status: 'NEW', progress: 0,
@@ -165,13 +165,13 @@ export class JobsComponent {
           deliveryAddress: '9111 S La Cienega Blvd, Inglewood, CA 90301',
           jobType: 'Live Load',
           containers: [
-          {'number':'', type: '22GP', status: '', readyForDispatch: false, 
+          {'number':'', type: '22GP', status: '', readyForDispatch: false,
             progress:0,  POD:'', location: {address:'897 190th St, Gardena, CA 90502'}, updated: new Date(), note:'NOTE'},
-          {'number':'', type: '22GP', status: '', readyForDispatch: false, 
+          {'number':'', type: '22GP', status: '', readyForDispatch: false,
             progress:0,  POD:'', location: {address:'897 190th St, Gardena, CA 90502'}, updated: new Date(), note:'NOTE'}
           ]
         },
-        constrains: { before: new Date(), after: null,  on: null,  conditions: [], remarks:'waiting for container to be ready to dispatch'},  
+        constrains: { before: new Date(), after: null,  on: null,  conditions: [], remarks:'waiting for container to be ready to dispatch'},
         activities: [{
             type: 'info',
             title: 'XXMU1234600 Dispatched',
@@ -179,7 +179,7 @@ export class JobsComponent {
             content: 'Some awesome content.'
         }],
         //qupte: If a job is sent, there will be no quote.
-        updated: new Date() 
+        updated: new Date()
         }
     ];
     this.tableParams = new NgTableParams({}, { dataset: data});

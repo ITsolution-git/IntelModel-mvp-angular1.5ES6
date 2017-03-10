@@ -23,13 +23,11 @@ var UserSchema = new Schema({
   salt: String,
   phone: String,
   address: String,
-  city: String,
-  zipCode: String,
   accountType: {
     type: String,
     enum: [
       'Container Terminal Operator', 'Marine Container Carrier', 'Freight Forwarder', 'Customs Broker', 'Freight Broker', 'BCO', 'Chassis Pool', // user
-      'Dispatcher', //dispatcher    
+      'Dispatcher', //dispatcher
       'Trucking Company', 'Owner Operator', 'Driver' //carrier
       ]
   },

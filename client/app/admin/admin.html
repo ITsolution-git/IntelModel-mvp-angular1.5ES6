@@ -9,10 +9,59 @@
         <a ng-click="admin.delete(user)" class="trash"><span class="fa fa-trash fa-2x"></span></a>
     </li>
   </ul>
+    <a class="btn btn-default"  role="button">Register More Users</a>
+    <br>
 </div>
 
 <pre>
 
 Admin also can activate/de-activate a user.
+
+Admin can register users here on behalf of a user
+    Account Type:
+    Shipper/Consignee (BCO)  --> role: 'user'
+    Trucking Company  --> role:'carrier'
+    Freight Forwarder --> role: 'user'
+    Customs Broker (BCO) --> role: 'user'
+    Freight Broker --> role: 'user'
+    Container Terminal (BCO) --> role: 'user'
+    Chassis Provider (BCO) -->role: 'user'
+    Container Leasing Company (BCO)--> role: 'user'
+
+Please add other attributes for a user
+
+Depends on the account type, on the second page, ask for account type specific information there.
+
+Trucking Company
+
+Company Name [text]
+Business Type [select from list: Sole Proprietor/Corporation/LLC/LLP]
+First & Last Name [text]
+Tax ID number [text]
+MC number
+DOT number
+SCAC number
+Public Liability Insurance Provider / Policy Number
+Cargo Insurance Provider / Policy Number
+Hazmat? Yes/No
+Area of Operation [Select from List: Areas Container Terminals Located]
+
+
+Freight Forwarder
+
+Company Name [text]
+Business Type [select from list: Sole Proprietor/Corporation/LLC/LLP]
+First & Last Name [text]
+Tax ID number [text]
+SCAC number
+
+
+
+Beneficial Cargo Owner(Shipper/Consignee) Registration
+  Company Name [text]
+Business Type [select from list: Sole Proprietor/Corporation/LLC/LLP]
+First & Last Name [text]
+Tax ID number [text]
+
 
 </pre>

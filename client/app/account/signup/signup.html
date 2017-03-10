@@ -35,6 +35,59 @@
           </p>
         </div>
 
+        <div class="form-group" ng-class="{ 'has-success': form.email.$valid && vm.submitted,
+                                            'has-error': form.email.$invalid && vm.submitted }">
+          <label>Phone</label>
+
+          <input type="text" name="phone" class="form-control" ng-model="vm.user.phone"
+                 required
+                 mongoose-error/>
+          <p class="help-block" ng-show="form.phone.$error.phone && vm.submitted">
+            Doesn't look like a valid phone.
+          </p>
+          <p class="help-block" ng-show="form.phone.$error.required && vm.submitted">
+            What's your phone number?
+          </p>
+          <p class="help-block" ng-show="form.phone.$error.mongoose">
+            {{ vm.errors.email }}
+          </p>
+        </div>
+
+        <div class="form-group" ng-class="{ 'has-success': form.email.$valid && vm.submitted,
+                                            'has-error': form.email.$invalid && vm.submitted }">
+          <label>Address</label>
+
+          <input type="text" name="address" class="form-control" ng-model="vm.user.street"
+                 required
+                 mongoose-error/>
+          <p class="help-block" ng-show="form.address.$error.address && vm.submitted">
+            Doesn't look like a valid phone.
+          </p>
+          <p class="help-block" ng-show="form.address.$error.required && vm.submitted">
+            What's your phone number?
+          </p>
+          <p class="help-block" ng-show="form.address.$error.mongoose">
+            {{ vm.errors.email }}
+          </p>
+        </div>
+
+        <div class="form-group" ng-class="{ 'has-success': form.email.$valid && vm.submitted,
+                                            'has-error': form.email.$invalid && vm.submitted }">
+          <label>Type</label>
+<pre>
+    Shipper/Consignee (BCO) --> role: user
+    Trucking Company        --> role: carrier
+    Freight Forwarder       --> role: user
+    Customs Broker (BCO)    --> role: user
+    Freight Broker          --> role: user
+    Container Terminal (BCO)--> role: user
+    Chassis Provider (BCO)  --> role: user
+    Container Leasing Company (BCO) --> role: user
+</pre>
+
+        </div>
+
+
         <div class="form-group" ng-class="{ 'has-success': form.password.$valid && vm.submitted,
                                             'has-error': form.password.$invalid && vm.submitted }">
           <label>Password</label>
@@ -63,6 +116,8 @@
             Passwords must match.
           </p>
         </div>
+        <a class="btn btn-default"  role="button">Continue</a>
+        <a class="btn btn-default"  role="button"> Cancel</a>
 
       </form>
     </div>
@@ -72,9 +127,45 @@
 
 <pre>
 
+Depends on the account type, on the second page, ask for account type specific information there.
+
+Account Type:
+    Shipper/Consignee (BCO)  --> role: 'user'
+    Trucking Company  --> role:'carrier'
+    Freight Forwarder --> role: 'user'
+    Customs Broker (BCO) --> role: 'user'
+    Freight Broker --> role: 'user'
+    Container Terminal (BCO) --> role: 'user'
+    Chassis Provider (BCO) -->role: 'user'
+    Container Leasing Company (BCO)--> role: 'user'
+
 Please add other attributes for a user
 
 Depends on the account type, on the second page, ask for account type specific information there.
+
+Trucking Company
+
+Company Name [text]
+Business Type [select from list: Sole Proprietor/Corporation/LLC/LLP]
+First & Last Name [text]
+Tax ID number [text]
+MC number
+DOT number
+SCAC number
+Public Liability Insurance Provider / Policy Number
+Cargo Insurance Provider / Policy Number
+Hazmat? Yes/No
+Area of Operation [Select from List: Areas Container Terminals Located]
+
+
+Freight Forwarder
+
+Company Name [text]
+Business Type [select from list: Sole Proprietor/Corporation/LLC/LLP]
+First & Last Name [text]
+Tax ID number [text]
+SCAC number
+
 
 All accounts will be initially to be "not authorized" first.
 
