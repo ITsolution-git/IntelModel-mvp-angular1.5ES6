@@ -1,22 +1,31 @@
 <div class="container">
 	
 
-	<pre>
-	Reference #
+<pre>
+Reference #
 Pickup location (Location autocomplete via Google)
 Delivery location (Location autocomplete via Google)
 Either (a list of pairs (container types x number), or container number and container type ).
+
+
 
 Note: container type: 
 22GP, 20PC, 20U1, 20VP, 22RT, 22TO
 42GP, 42PC, 42U1, 40VP, 42HQ, 
 L5GO
-	</pre>
+</pre>
 </div>
 
 <div class="container">
 	<button class="btn" type="button" ng-click="crossTownCtrl.cancel()">Cancel</button>
 	<button class="btn" type="button" ng-click="crossTownCtrl.save()">Save</button>
 	<button class="btn" type="button" ng-click="crossTownCtrl.sendForQuote()">Send</button>
-	<button class="btn pull-right" type="button" ng-click="crossTownCtrl.confirmQuote()"> Confirm</button>
+	<button class="btn" type="button" ng-click="crossTownCtrl.rejectQuote()">Reject Quote</button>
+	<button class="btn pull-right" type="button" ng-click="crossTownCtrl.confirmQuote()"> Confirm Quote</button>
 </div>
+
+<pre>
+
+"Reject Quote" and "Confirm Quote" are only enabled if a quote is provided after sending.
+
+</pre>

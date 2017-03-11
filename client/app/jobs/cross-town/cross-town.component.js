@@ -27,7 +27,7 @@ export class CrossTownComponent {
                         progress:0,  POD:'', location: {address:'897 190th St, Gardena, CA 90502'}, updated: new Date(), note:'NOTE'}
                 ]
             },
-            constrains: { before: new Date(), after: null,  on: null,  conditions: [], remarks:'waiting for container to be ready to dispatch'},
+            constrains: { before: new Date(), after: null,  on: null,  preconditions: [], remarks:'waiting for container to be ready to dispatch'},
             activities: [{
                 type: 'info',
                 title: 'XXMU1234600 Dispatched',

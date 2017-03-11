@@ -38,7 +38,7 @@ export class ImportJobComponent {
                         progress:0,  POD:'', location: {}, updated: new Date(), note:'NOTE'}
                 ]
             },
-            constrains: { before: new Date(), after: null,  on: null,  conditions: [], remarks:'waiting for container to be ready to dispatch'},
+            constrains: { before: new Date(), after: null,  on: null,  preconditions: [], remarks:'waiting for container to be ready to dispatch'},
             activities: [{
                 type: 'info',
                 title: 'XXMU1234600 Dispatched',

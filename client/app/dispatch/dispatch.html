@@ -2,18 +2,96 @@
 
 <uib-tabset active="active">
     <uib-tab index="0" heading="Incoming Job Requests">
-
-		//display a list of job requests (without client's comfirmation on quote)
-
+    <div>
+    	<table class="table">
+		<tr>
+			<th>Job Name</th>
+			<th>Type</th>
+			<th>Containers</th>
+			<th>Quote</th>
+			<th>From</th>
+			<th>To</th>
+			<th>Updated</th>
+			<th>Quoting Status</th>
+		</tr>
+		<tr>
+			<td>Job1</td>
+			<td>Import</td>
+			<td>List of containers</td>
+			<td><input type="number"> <button class="btn" type="button">Send Quote</td>
+			<td>LB/CCOL</td>
+			<td>90275</td>
+			<td>2 mins ago</td>
+			<td> Wether customer accept or reject the quote</td>
+		</tr>
+		</table>
+	</div>
     </uib-tab>
 
-    <uib-tab index="1" heading="New Jobs">
-		//display a list of job requests (with client's comfirmation on quote, but without confirmation from trucking companies)
+    <uib-tab index="1" heading="Accepted Jobs">
+    	<pre>
+
+    	Relationship (Jobs --1:N --> Containers --> 1: N trips)
+
+    	Bundled trips for a trucking company: 1 set of trips from jobs.
+
+    	All jobs with the quotes being accepted by customers
+
+    	A tree table of Job --> its containers --> trips for each containers
+
+    	Dispatcher can add/edit/remove/change ordering a trip to a container
+
+    	The information for a trip is the following:
+    	   From: one of the options: JOB Level's FROM, JOB LEVEL's TO, type-in
+    	   To: one of the options: JOB Level's FROM, JOB LEVEL's TO, type-in
+    	   Constraints: Before: Date or null, After: Date or null, On: Date or null
+
+    	Once all trips have been created by dispatcher
+
+    	They click on "Schedule" to start the automatic trip bundling and assign them to trucking companies
+    	After Scheduling is completed, each bundled trips should have at least a trucking company assigned.
+
+    	The scheduling algorithm (to be developed) will bundle a set of trips (could be from different containers 
+    	or even from different jobs) 
+    	to one or more trucking companies (each company will have to bid on the set later).
+
+    	Dispatcher can view the assignments in two views 
+
+    	[1] by trucking company assignment
+
+    	A tree table of Trucking Company --> its bundled trips --> associated container --> job
+
+    	[2] by the bundled trips
+
+    	A tree view of Bundled trips --> Trucking companies --> Their bid
+
+    	Dispatcher can select a trucking company for a bundled trip after reviewing their bid.
+
+    	Once a trucking company is selected, it becomes a Dispatched Job ( a set of bundled trips).
+
+    	Trucking company will see the bundled trips in their trucking assignment view.
+    
+    	</pre>
 
     </uib-tab>
 
     <uib-tab index="2" heading="Dispatched Jobs">
-		//display a list of job requests (with trucking companies comfirmation on assignment)
+
+    <pre>
+    
+		Dispatcher can view the dispatched "Jobs" in two views"
+
+		[1] by Job
+
+    	A tree table view of Job --> containers --> its trips --> Trip Status and Assigned Trucking company
+
+    	[2] by Trucking Companies
+
+    	A tree table view of Truck Company --> the Bundled trips --> Trip status 
+
+    	Here dispatcher can take the assignment of a bundled trips or a trip away from a trucking company.
+
+    </pre>
 
     </uib-tab>
 

@@ -53,10 +53,17 @@
                 <button class="btn" type="button" ng-click="exportJobCtrl.cancel()">Cancel</button>
                 <button class="btn" type="button" ng-click="exportJobCtrl.save()">Save</button>
                 <button class="btn" type="button" ng-click="exportJobCtrl.sendForQuote()">Send</button>
-                <button class="btn pull-right" type="button" ng-click="exportJobCtrl.confirmQuote()"> Confirm</button>
+                <button class="btn" type="button" ng-click="exportJobCtrl.rejectQuote()">Reject Quote</button>
+                <button class="btn pull-right" type="button" ng-click="exportJobCtrl.confirmQuote()"> Confirm Quote</button>
             </div>
             </div>
         </div>
     </div>
 </div>
+
+<pre>
+
+"Reject Quote" and "Confirm Quote" are only enabled if a quote is provided after sending.
+
+</pre>
 

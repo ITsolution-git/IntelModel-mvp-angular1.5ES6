@@ -40,7 +40,7 @@ export class JobsComponent {
             progress:15,  POD:'', location: {}, updated: new Date(), note:'NOTE'}
           ]
         },
-        constrains: { before: new Date(), after: null,  on: null,  conditions: [], remarks:'waiting for container to be ready to dispatch'},
+        constrains: { before: new Date(), after: null,  on: null,  preconditions: [], remarks:'waiting for container to be ready to dispatch'},
         /**
             container type: 22GP, 22PC, 22U1, 22VP, 22RT, 22TO
               42GP, 42PC, 42U1, 40VP, 42HQ,
@@ -96,7 +96,7 @@ export class JobsComponent {
             progress:0,  POD:'', location: {}, updated: new Date(), note:'NOTE'}
           ]
         },
-        constrains: { before: new Date(), after: null,  on: null,  conditions: [], remarks:'waiting for container to be ready to dispatch'},
+        constrains: { before: new Date(), after: null,  on: null,  preconditions: [], remarks:'waiting for container to be ready to dispatch'},
         activities: [{
             type: 'info',
             title: 'XXMU1234600 Dispatched',
@@ -138,7 +138,7 @@ export class JobsComponent {
             progress:0,  POD:'', location: {}, updated: new Date(), note:'NOTE'}
           ]
         },
-        constrains: { before: new Date(), after: null,  on: null,  conditions: [], remarks:'waiting for container to be ready to dispatch'},
+        constrains: { before: new Date(), after: null,  on: null,  preconditions: [], remarks:'waiting for container to be ready to dispatch'},
         activities: [{
             type: 'info',
             title: 'XXMU1234600 Dispatched',
@@ -171,7 +171,7 @@ export class JobsComponent {
             progress:0,  POD:'', location: {address:'897 190th St, Gardena, CA 90502'}, updated: new Date(), note:'NOTE'}
           ]
         },
-        constrains: { before: new Date(), after: null,  on: null,  conditions: [], remarks:'waiting for container to be ready to dispatch'},
+        constrains: { before: new Date(), after: null,  on: null,  preconditions: [], remarks:'waiting for container to be ready to dispatch'},
         activities: [{
             type: 'info',
             title: 'XXMU1234600 Dispatched',
