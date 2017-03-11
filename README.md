@@ -43,4 +43,6 @@ Running `npm test` will run the unit tests with karma.
 
 6. The priority for the design is usability, mistake forgiving, since the target user groups are generally of low education.
 
-7. Check in completed code as frequent as possible, and prepared to change based on the feedback.
+7. Since this is a dispatching platform, real-time notification is critical, any changes that impact other users shall be pushed to them via websocket.
+
+8. Check in completed code as frequent as possible, and prepared to change based on the feedback.
