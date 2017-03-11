@@ -10,12 +10,12 @@
   <div class="row">
   <table ng-table="jobsCtrl.tableParams" class="table table-condensed" show-filter="true">
     <tr ng-repeat="job in $data">
-      <td title="'Job'" filter="{ name: 'text'}" sortable="'name'"><a href="#" ng-click="display(job)">{{job.name}}</a></td>
+      <td title="'Job'" filter="{ name: 'text'}" sortable="'name'"><a href="#" ng-click="display(job)">{{job.name}} </a> {{job.quote.charge | currency}}</td>
       <td title="'Status'" sortable="'status'">
-          To Be Displayed
+          status: quote provide, quote confirmed, dispatched, aggregated trip status, or delivered
       </td>
-      <td title="'Containers'" sortable="'containers'">{{job.description.containers.length}}, but more details</td>
-      <td title="'Type'" sortable="'type'">{{job.description.type}}, as representive icon</td>
+      <td title="'Containers'" sortable="'containers'">{{job.description.containers.length}}, show aggregated or line detailed status on each container </td>
+      <td title="'Type'" sortable="'type'">{{job.description.type}}, use representive icon</td>
       <td title="'Updated'" sortable="'updated'">{{job.updated}}, <br>should be displayed like " 3 mins ago"</td>
     </tr>
   </table>
@@ -34,7 +34,7 @@ customer can add, edit, delete jobs.
 
 Once a job is ready for submission, customer can click on "send" to publish the job for quote from dispatcher.
 
-Dispatcher will provide a quote to a job. 
+Dispatcher will provide a quote to a job.
 
 If customer is happy with the quote, he can confirm.
 If customer is not happy with the quote, he can reject the quote.

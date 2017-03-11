@@ -18,6 +18,10 @@ export default class SignupController {
     this.$location = $location;
   }
 
+  openTermsAndConditions() {
+
+  }
+
   register(form) {
     this.submitted = true;
 
