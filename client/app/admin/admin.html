@@ -15,10 +15,13 @@
 
 <pre>
 
-Admin also can activate/de-activate a user.
+Use cases:
 
-Admin can register users here on behalf of a user
-    Account Type:
+0. System Admin can view the list of companies and its users (primary, regular user).
+1. System Admin also can activate/de-activate a company and its user.
+3. Admin can register a company and its primary user account here on behalf of a company
+
+Company Account Type:
     Shipper/Consignee (BCO)  --> role: 'user'
     Trucking Company  --> role:'carrier'
     Freight Forwarder --> role: 'user'
@@ -28,7 +31,6 @@ Admin can register users here on behalf of a user
     Chassis Provider (BCO) -->role: 'user'
     Container Leasing Company (BCO)--> role: 'user'
 
-Please add other attributes for a user
 
 Depends on the account type, on the second page, ask for account type specific information there.
 
@@ -56,7 +58,6 @@ Tax ID number [text]
 SCAC number
 
 
-
 Beneficial Cargo Owner(Shipper/Consignee) Registration
   Company Name [text]
 Business Type [select from list: Sole Proprietor/Corporation/LLC/LLP]
@@ -64,4 +65,6 @@ First & Last Name [text]
 Tax ID number [text]
 
 
+It will create a company and a primary user.
+The primary can additional users to his company.
 </pre>
