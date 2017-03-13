@@ -18,7 +18,7 @@ export class NavbarComponent {
     },
 
     {
-      title: 'Trucking Assignments',
+      title: 'Loads',
       link: '/assignment'
     },
     {

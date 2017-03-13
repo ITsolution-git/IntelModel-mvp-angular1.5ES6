@@ -128,11 +128,24 @@
 
 <pre>
 
-Depends on the account type, on the second page, ask for account type specific information there.
+Relationship of User, Company
+IntelModal:
+    System Admin, Dispatchers
+Customers:
+    Company --> primary, additional users
+Trucking Provider:
+    Company --> Primary, drivers, and trucks
+
+    Signup means registering a company and its primary user
+    Company primary user can add additional users or drivers or trucks.
+
+
+    During signup, depends on the account type, on the second page, it will ask for account type specific information there.
 
 Account Type:
     Shipper/Consignee (BCO)  --> role: 'user'
     Trucking Company  --> role:'carrier'
+    Owner Operator --> role:'carrier'
     Freight Forwarder --> role: 'user'
     Customs Broker (BCO) --> role: 'user'
     Freight Broker --> role: 'user'
@@ -144,13 +157,13 @@ Please add other attributes for a user
 
 Depends on the account type, on the second page, ask for account type specific information there.
 
-Trucking Company
+Trucking Company/Owner Operator
 
 Company Name [text]
 Business Type [select from list: Sole Proprietor/Corporation/LLC/LLP]
 First & Last Name [text]
 Tax ID number [text]
-MC number
+MC number (optional for Owner Operator, but required for Trucking Company)
 DOT number
 SCAC number
 Public Liability Insurance Provider / Policy Number
