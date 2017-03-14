@@ -1,17 +1,17 @@
 /**
  * Using Rails-like standard naming convention for endpoints.
- * GET     /api/schedules              ->  index
- * POST    /api/schedules              ->  create
- * GET     /api/schedules/:id          ->  show
- * PUT     /api/schedules/:id          ->  upsert
- * PATCH   /api/schedules/:id          ->  patch
- * DELETE  /api/schedules/:id          ->  destroy
+ * GET     /api/trips              ->  index
+ * POST    /api/trips              ->  create
+ * GET     /api/trips/:id          ->  show
+ * PUT     /api/trips/:id          ->  upsert
+ * PATCH   /api/trips/:id          ->  patch
+ * DELETE  /api/trips/:id          ->  destroy
  */
 
 'use strict';
 
 import jsonpatch from 'fast-json-patch';
-import Schedule from './schedule.model';
+import Trip from './trip.model';
 
 function respondWithResult(res, statusCode) {
   statusCode = statusCode || 200;
@@ -63,71 +63,55 @@ function handleError(res, statusCode) {
   };
 }
 
-// Gets a list of Schedules
+// Gets a list of Trips
 export function index(req, res) {
-  return Schedule.find().exec()
+  return Trip.find().exec()
     .then(respondWithResult(res))
     .catch(handleError(res));
 }
 
-// Gets a single Schedule from the DB
+// Gets a single Trip from the DB
 export function show(req, res) {
-  return Schedule.findById(req.params.id).exec()
+  return Trip.findById(req.params.id).exec()
     .then(handleEntityNotFound(res))
     .then(respondWithResult(res))
     .catch(handleError(res));
 }
 
-// Creates a new Schedule in the DB
+// Creates a new Trip in the DB
 export function create(req, res) {
-  return Schedule.create(req.body)
+  return Trip.create(req.body)
     .then(respondWithResult(res, 201))
     .catch(handleError(res));
 }
 
-// Upserts the given Schedule in the DB at the specified ID
+// Upserts the given Trip in the DB at the specified ID
 export function upsert(req, res) {
   if(req.body._id) {
     delete req.body._id;
   }
-  return Schedule.findOneAndUpdate({_id: req.params.id}, req.body, {new: true, upsert: true, setDefaultsOnInsert: true, runValidators: true}).exec()
+  return Trip.findOneAndUpdate({_id: req.params.id}, req.body, {new: true, upsert: true, setDefaultsOnInsert: true, runValidators: true}).exec()
 
     .then(respondWithResult(res))
     .catch(handleError(res));
 }
 
-// Updates an existing Schedule in the DB
+// Updates an existing Trip in the DB
 export function patch(req, res) {
   if(req.body._id) {
     delete req.body._id;
   }
-  return Schedule.findById(req.params.id).exec()
+  return Trip.findById(req.params.id).exec()
     .then(handleEntityNotFound(res))
     .then(patchUpdates(req.body))
     .then(respondWithResult(res))
     .catch(handleError(res));
 }
 
-// Deletes a Schedule from the DB
+// Deletes a Trip from the DB
 export function destroy(req, res) {
-  return Schedule.findById(req.params.id).exec()
+  return Trip.findById(req.params.id).exec()
     .then(handleEntityNotFound(res))
     .then(removeEntity(res))
     .catch(handleError(res));
-}
-
-
-
-
-// scheduling api
-
-
-export function scheduling(req, res) {
-
-  //take a list of the decomposed trips and 
-  //based on scheduling algorithm to create bundles, assign them to likely candidate companies.
-  
-
-
-
 }

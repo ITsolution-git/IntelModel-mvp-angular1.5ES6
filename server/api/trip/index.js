@@ -1,7 +1,7 @@
 'use strict';
 
 var express = require('express');
-var controller = require('./schedule.controller');
+var controller = require('./trip.controller');
 
 var router = express.Router();
 
@@ -11,6 +11,5 @@ router.post('/', controller.create);
 router.put('/:id', controller.upsert);
 router.patch('/:id', controller.patch);
 router.delete('/:id', controller.destroy);
-router.post('/scheduling', controller.scheduling);
 
 module.exports = router;

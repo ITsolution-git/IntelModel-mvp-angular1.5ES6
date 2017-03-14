@@ -22,16 +22,8 @@ var UserSchema = new Schema({
   provider: String,
   salt: String,
   phone: String,
-  address: String,
-  accountType: {
-    type: String,
-    enum: [
-      'Container Terminal Operator', 'Marine Container Carrier', 'Freight Forwarder', 'Customs Broker', 'Freight Broker', 'BCO', 'Chassis Pool', // user
-      'Dispatcher', //dispatcher
-      'Trucking Company', 'Owner Operator', 'Driver' //carrier
-      ]
-  },
-
+  primary: {type: Boolean, default: false},
+  companyId: {type: mongoose.Schema.Types.ObjectId, ref: 'Company'},
   authorized: {type: Boolean, default: false}
 });
 

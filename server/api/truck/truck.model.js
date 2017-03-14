@@ -3,8 +3,11 @@
 import mongoose from 'mongoose';
 
 var TruckSchema = new mongoose.Schema({
-  name: String,
-  info: String,
+  plate: {type: String, required: true},
+  manufacturer: String,
+  model: String,
+  year: String,
+  companyId: {type: mongoose.Schema.Types.ObjectId, ref: 'Company'},
   active: Boolean
 });
 
