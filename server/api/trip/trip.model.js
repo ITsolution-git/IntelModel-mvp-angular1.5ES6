@@ -3,6 +3,9 @@
 import mongoose from 'mongoose';
 import {registerEvents} from './trip.events';
 
+
+var locType = { address: String, loc : { lng : Number , lat : Number }};
+
 var TripSchema = new mongoose.Schema({
 
   name: String,
@@ -23,8 +26,8 @@ var TripSchema = new mongoose.Schema({
   },
   readyForDispatch: Boolean,
 
-  from: String,
-  to: String,
+  from: locType,
+  to:   locType,
 
   constraints: {
   	before: Date, 

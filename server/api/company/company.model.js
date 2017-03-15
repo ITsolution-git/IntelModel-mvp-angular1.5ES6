@@ -16,12 +16,12 @@ var CompanySchema = new mongoose.Schema({
   type: {
     type: String,
     enum: [
-      'Container Terminal Operator', 
-      'Marine Container Carrier', 
-      'Freight Forwarder', 
-      'Customs Broker', 
-      'Freight Broker', 
-      'BCO', 
+      'Container Terminal Operator', // shipper
+      'Marine Container Carrier', //shipper
+      'Freight Forwarder', //broker
+      'Customs Broker', //broker
+      'Freight Broker', //broker
+      'BCO', // shipper
       'Chassis Pool', // user
       'Trucking Company', 'Owner Operator', 'Driver' //carrier
      ]
@@ -33,22 +33,19 @@ var CompanySchema = new mongoose.Schema({
   	//right now shipper does not have additional attributes
   },
 
-  freightForwarderInfo: {
+  brokerInfo: {
 	SCAC: String
   },
 
   carrierInfo: {
-	taxId: String,
 	mcNumber: String,
 	DOT: String,
 	SCAC: String,
 	publicLiabilityinsuranceProvider: String,
 	cargoInsuranceProvider: String,
 	hazmat: Boolean,
-	operationAreas: [String],
-	trucks: [{plate:String, manufacturer: String, model:String, year: String}]
+	operationAreas: [String]
   },
-
    updated: Date,
    active: Boolean
 });
