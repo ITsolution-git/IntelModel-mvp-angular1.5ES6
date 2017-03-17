@@ -24,6 +24,10 @@ export class NavbarComponent {
     {
       title: 'Reports',
       link: '/reports'
+    },
+    {
+      title: 'Playground',
+      link: '/playground'
     }
 
   ];

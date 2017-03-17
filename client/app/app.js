@@ -36,11 +36,12 @@ import AssignmentComponent from './assignment/assignment.component';
 import ReportsComponent from './reports/reports.component';
 import {ngTableModule} from 'ng-table';
 import 'angular-timeline';
+import 'ui-select';
 
 import './app.css';
 
 angular.module('intelmodalApp', [ngCookies, ngResource, ngSanitize, 'btford.socket-io', ngRoute,
-  uiBootstrap, ngTableModule.name, 'angular-timeline', _Auth, account, admin, 
+  uiBootstrap, ngTableModule.name, 'angular-timeline', 'ui.select', _Auth, account, admin,
   JobsComponent, ExportJobComponent, ImportJobComponent, CrossTownComponent,
   DispatchComponent,
   AssignmentComponent,
