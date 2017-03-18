@@ -16,14 +16,14 @@ var CompanySchema = new mongoose.Schema({
   type: {
     type: String,
     enum: [
-      'Container Terminal Operator', // shipper
-      'Marine Container Carrier', //shipper
-      'Freight Forwarder', //broker
-      'Customs Broker', //broker
-      'Freight Broker', //broker
-      'BCO', // shipper
-      'Chassis Pool', // user
-      'Trucking Company', 'Owner Operator', 'Driver' //carrier
+      'Container Terminal Operator', // shipper --> role pf users for shiper is "user"
+      'Marine Container Carrier', 	// shipper  --> role pf users for shiper is "user"
+      'Freight Forwarder', 			// broker   --> role pf users for broker is "user"
+      'Customs Broker', 			// broker   --> role pf users for broker is "user"
+      'Freight Broker', 			// broker   --> role pf users for broker is "user"
+      'Shipper/Consignee', 			// shipper  --> role pf users for shiper is "user"
+      'Chassis Provider', 			// shipper  --> role pf users for shiper is "user"
+      'Trucking Company', 'Owner Operator' //carrier -->  role pf users for carrier is "carrier"
      ]
   },
   ratings: String,

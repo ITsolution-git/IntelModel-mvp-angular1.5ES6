@@ -6,6 +6,7 @@
 'use strict';
 import Thing from '../api/thing/thing.model';
 import User from '../api/user/user.model';
+import Location from '../api/location/location.model';
 
 Thing.find({}).remove()
   .then(() => {
@@ -37,6 +38,22 @@ Thing.find({}).remove()
       info: 'Easily deploy your app to Heroku or Openshift with the heroku '
             + 'and openshift subgenerators'
     });
+  });
+
+Location.find({}).remove().then(() => {
+  Location.create({
+  name: "Long Beach Port",
+  loc : { lng : -118.202 , lat : 33.753 },
+  fenceRadius: 0.02,
+  updated: new Date()
+ }, {
+  name: "San Pedro Port",
+  loc : { lng : -118.202 , lat : 33.753 },
+  fenceRadius: 0.02,
+  updated: new Date()
+  })
+}).then(() => {
+    console.log('finished populating locations');
   });
 
 User.find({}).remove()
