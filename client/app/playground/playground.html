@@ -1,52 +1,70 @@
 <div class="container">
-  <h1>Angular Timeline</h1>
-  <p>
-  <button class="button  btn-default" ng-click="playgroundCtrl.addEvent()">Add New Event</button>
-  <button class="button" ng-click="playgroundCtrl.leftAlign()">Left Side</button>
-  <button class="button" ng-click="playgroundCtrl.rightAlign()">Right Side</button>
-  <button class="button" ng-click="playgroundCtrl.defaultAlign()">Alternate Sides</button>
-  </p>
-  <div class="row">
-  <div class="col-md-4">
+    <h1>Angular Timeline</h1>
+    <p>
+        <button class="button  btn-default" ng-click="playgroundCtrl.addEvent()">Add New Event</button>
+        <button class="button" ng-click="playgroundCtrl.leftAlign()">Left Side</button>
+        <button class="button" ng-click="playgroundCtrl.rightAlign()">Right Side</button>
+        <button class="button" ng-click="playgroundCtrl.defaultAlign()">Alternate Sides</button>
+    </p>
+    <div class="row">
+        <div class="col-md-4">
 
-  <ui-select ng-model="playgroundCtrl.person.selected">
-    <ui-select-match placeholder="Select or search a person in the list...">{{$select.selected.name}}</ui-select-match>
-    <ui-select-choices group-by="'country'" repeat="item in playgroundCtrl.people | filter: $select.search">
-      <span ng-bind-html="item.name | highlight: $select.search"></span>
-      <small ng-bind-html="item.email | highlight: $select.search"></small>
-    </ui-select-choices>
-  </ui-select>
-  </div>
-  </div>
+            <ui-select ng-model="playgroundCtrl.person.selected">
+                <ui-select-match placeholder="Select or search a person in the list...">{{$select.selected.name}}
+                </ui-select-match>
+                <ui-select-choices group-by="'country'" repeat="item in playgroundCtrl.people | filter: $select.search">
+                    <span ng-bind-html="item.name | highlight: $select.search"></span>
+                    <small ng-bind-html="item.email | highlight: $select.search"></small>
+                </ui-select-choices>
+            </ui-select>
+        </div>
+    </div>
+    <br>
+    <div class="row">
+        <div class="col-md-4">
+            <ui-select multiple ng-model="playgroundCtrl.selectedPeople" sortable="true" close-on-select="false"
+                       style="width: 800px;">
+                <ui-select-match placeholder="Select person...">{{$item.name}} &lt;{{$item.email}}&gt;</ui-select-match>
+                <ui-select-choices
+                        repeat="person in playgroundCtrl.people ">
+                    <div ng-bind-html="person.name"></div>
+                    <small>
+                        email: {{person.email}}
+                        age: <span ng-bind-html="''+person.age"></span>
+                    </small>
+                </ui-select-choices>
+            </ui-select>
+        </div>
+    </div>
+<br><br>
+<!--    <div class="row">
 
-  <div class="row">
+        <timeline>
+            <timeline-event ng-repeat="event in playgroundCtrl.events" side="{{playgroundCtrl.side}}">
+                <timeline-badge class="{{event.badgeClass}} timeline-hidden"
+                                when-visible="animateElementIn" when-not-visible="animateElementOut">
+                    <i class="glyphicon {{event.badgeIconClass}}"></i>
+                </timeline-badge>
 
-  <timeline>
-    <timeline-event ng-repeat="event in playgroundCtrl.events" side="{{playgroundCtrl.side}}">
-      <timeline-badge class="{{event.badgeClass}} timeline-hidden"
-                      when-visible="animateElementIn" when-not-visible="animateElementOut">
-        <i class="glyphicon {{event.badgeIconClass}}"></i>
-      </timeline-badge>
+                <timeline-panel class="{{event.badgeClass}} timeline-hidden"
+                                when-visible="animateElementIn" when-not-visible="animateElementOut">
+                    <timeline-heading>
+                        <h4>{{event.title}}</h4>
 
-      <timeline-panel class="{{event.badgeClass}} timeline-hidden"
-                      when-visible="animateElementIn" when-not-visible="animateElementOut">
-        <timeline-heading>
-          <h4>{{event.title}}</h4>
-
-          <p ng-if="event.when">
-            <small class="text-muted"><i class="glyphicon glyphicon-time"></i>{{event.when}}</small>
-          </p>
-          <p ng-if="event.titleContentHtml" ng-bind-html="event.titleContentHtml">
-          </p>
-        </timeline-heading>
-        <p ng-bind-html="event.contentHtml"></p>
-        <timeline-footer ng-if="event.footerContentHtml">
-          <span ng-bind-html="event.footerContentHtml"></span>
-        </timeline-footer>
-      </timeline-panel>
-    </timeline-event>
-  </timeline>
-  </div>
+                        <p ng-if="event.when">
+                            <small class="text-muted"><i class="glyphicon glyphicon-time"></i>{{event.when}}</small>
+                        </p>
+                        <p ng-if="event.titleContentHtml" ng-bind-html="event.titleContentHtml">
+                        </p>
+                    </timeline-heading>
+                    <p ng-bind-html="event.contentHtml"></p>
+                    <timeline-footer ng-if="event.footerContentHtml">
+                        <span ng-bind-html="event.footerContentHtml"></span>
+                    </timeline-footer>
+                </timeline-panel>
+            </timeline-event>
+        </timeline>
+    </div>-->
 
 </div>
 

@@ -51,6 +51,8 @@ export class PlaygroundComponent {
             { name: 'Michael',   email: 'michael@email.com',   age: 15, country: 'Colombia' },
             { name: 'Nicolás',   email: 'nicolas@email.com',    age: 43, country: 'Colombia' }
         ];
+
+        this.selectedPeople = [];
     }
 
     addEvent() {
