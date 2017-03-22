@@ -289,6 +289,8 @@ gulp.task('jscs', () => {
 gulp.task('clean:tmp', () => del(['.tmp/**/*'], {dot: true}));
 
 gulp.task('start:client', cb => {
+    process.env.NODE_ENV = process.env.NODE_ENV || 'development';
+    config = require(`./${serverPath}/config/environment`);
     whenServerReady(() => {
         open('http://localhost:' + config.browserSyncPort);
         cb();

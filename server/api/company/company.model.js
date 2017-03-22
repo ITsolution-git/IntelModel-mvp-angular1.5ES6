@@ -2,7 +2,7 @@
 
 import mongoose from 'mongoose';
 import {registerEvents} from './company.events';
-
+import User from '../user/user.model';
 var CompanySchema = new mongoose.Schema({
 
   //general company info
@@ -34,20 +34,21 @@ var CompanySchema = new mongoose.Schema({
   },
 
   brokerInfo: {
-	SCAC: String
+	  SCAC: String
   },
 
   carrierInfo: {
-	mcNumber: String,
-	DOT: String,
-	SCAC: String,
-	publicLiabilityinsuranceProvider: String,
-	cargoInsuranceProvider: String,
-	hazmat: Boolean,
-	operationAreas: [String]
+    mcNumber: String,
+    DOT: String,
+    SCAC: String,
+    publicLiabilityinsuranceProvider: String,
+    cargoInsuranceProvider: String,
+    hazmat: Boolean,
+    operationAreas: [String]
   },
-   updated: Date,
-   active: Boolean
+  updated: Date,
+  active: {type: Boolean, default: false},
+  users: [{ type: mongoose.Schema.ObjectId, ref: 'User' }]
 });
 
 registerEvents(CompanySchema);

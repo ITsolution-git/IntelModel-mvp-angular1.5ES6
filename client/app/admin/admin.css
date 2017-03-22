@@ -17,3 +17,20 @@
 	align-items: center;
 	text-decoration: none;
 }
+#company-container > tbody > tr > td{
+	vertical-align: middle;
+}
+#company-container > tbody > tr.collapsed > td:nth-child(1), #company-container > tbody > tr.expanded > td:nth-child(1){
+	text-align: center;
+}
+#company-container > tbody > tr:nth-child(even){
+	transition: height 2s linear 1s;
+}
+tr.collapsed + tr{
+	display: none;
+	height: 0px;
+}
+tr.expanded + tr{
+	display: table-row;
+	height: auto;
+}

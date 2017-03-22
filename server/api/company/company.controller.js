@@ -66,8 +66,10 @@ function handleError(res, statusCode) {
 // Gets a list of Companys
 export function index(req, res) {
   return Company.find().exec()
-    .then(respondWithResult(res))
-    .catch(handleError(res));
+  .then(companies => {
+    res.status(200).json(companies);
+  })
+  .catch(handleError(res));
 }
 
 // Gets a single Company from the DB
@@ -90,7 +92,8 @@ export function upsert(req, res) {
   if(req.body._id) {
     delete req.body._id;
   }
-  return Company.findOneAndUpdate({_id: req.params.id}, req.body, {new: true, upsert: true, setDefaultsOnInsert: true, runValidators: true}).exec()
+  delete req.body.__v;
+  return Company.findOneAndUpdate({_id: req.params.id}, req.body, {new: true, upsert: true, setDefaultsOnInsert: true, runValidators: true, removeEmptyStrings: false}).exec()
 
     .then(respondWithResult(res))
     .catch(handleError(res));

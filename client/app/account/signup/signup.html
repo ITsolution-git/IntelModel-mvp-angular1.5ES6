@@ -1,114 +1,241 @@
 <div class="container">
-  <div class="row">
-    <div class="col-sm-12">
-      <h1>Sign up</h1>
+    <div class="row">
+        <div class="col-sm-12">
+            <h1>Sign up</h1>
+        </div>
+        <div class="col-sm-12">
+            <form class="form" name="userform" ng-submit="vm.registerUserAndGotoNext(userform)" novalidate ng-show="vm.isUserSignup">
+
+                <div class="form-group" ng-class="{ 'has-success': userform.name.$valid && (!userform.$pristine || userform.$submitted),
+                'has-error': userform.name.$invalid && (!userform.$pristine || userform.$submitted) }">
+                    <label>Name</label>
+
+                    <input type="text" name="name" class="form-control" ng-model="vm.user.name" required/>
+                    <p class="help-block" ng-show="userform.name.$error.required && (!userform.$pristine || userform.$submitted)">
+                        A name is required
+                    </p>
+                </div>
+
+                <div class="form-group" ng-class="{ 'has-success': userform.email.$valid && (!userform.$pristine || userform.$submitted),
+                'has-error': userform.email.$invalid && (!userform.$pristine || userform.$submitted) }">
+                    <label>Email</label>
+
+                    <input type="email" name="email" class="form-control" ng-model="vm.user.email" required mongoose-error
+                    ng-change="userform['email'].$setValidity('mongoose', true)"/>
+                    <p class="help-block" ng-show="userform.email.$error.email && (!userform.$pristine || userform.$submitted)">
+                        Doesn't look like a valid email.
+                    </p>
+                    <p class="help-block" ng-show="userform.email.$error.required && (!userform.$pristine || userform.$submitted)">
+                        What's your email address?
+                    </p>
+
+                    <p class="help-block" ng-show="userform.email.$invalid && (!userform.$pristine || userform.$submitted)">
+                        {{ vm.errors.email }}
+                    </p>
+                </div>
+
+                <div class="form-group" ng-class="{ 'has-success': userform.phone.$valid && (!userform.$pristine || userform.$submitted),
+                                            'has-error': userform.phone.$invalid && (!userform.$pristine || userform.$submitted) }">
+                    <label>Phone</label>
+
+                    <input type="text" name="phone" class="form-control" ng-model="vm.user.phone" required mongoose-error/>
+                    <p class="help-block" ng-show="userform.phone.$error.phone && (!userform.$pristine || userform.$submitted)">
+                        Doesn't look like a valid phone.
+                    </p>
+                    <p class="help-block" ng-show="userform.phone.$error.required && (!userform.$pristine || userform.$submitted)">
+                        What's your phone number?
+                    </p>
+                    <p class="help-block" ng-show="userform.phone.$error.mongoose">
+                        {{ vm.errors.phone }}
+                    </p>
+                </div>
+
+                <div class="form-group" ng-class="{ 'has-success': userform.password.$valid && (!userform.$pristine || userform.$submitted),
+                'has-error': userform.password.$invalid && (!userform.$pristine || userform.$submitted) }">
+                    <label>Password</label>
+
+                    <input type="password" name="password" class="form-control" ng-model="vm.user.password" ng-minlength="3" required mongoose-error/>
+                    <p class="help-block" ng-show="(userform.password.$error.minlength || userform.password.$error.required) && (!userform.$pristine || userform.$submitted)">
+                        Password must be at least 3 characters.
+                    </p>
+                    <p class="help-block" ng-show="userform.password.$error.mongoose">
+                        {{ vm.errors.password }}
+                    </p>
+                </div>
+
+                <div class="form-group" ng-class="{ 'has-success': userform.confirmPassword.$valid && (!userform.$pristine || userform.$submitted),
+                                            'has-error': userform.confirmPassword.$invalid && (!userform.$pristine || userform.$submitted) }">
+                    <label>Confirm Password</label>
+                    <input type="password" name="confirmPassword" class="form-control" ng-model="vm.user.confirmPassword" match="vm.user.password" ng-minlength="3" required/>
+                    <p class="help-block" ng-show="userform.confirmPassword.$error.match && (!userform.$pristine || userform.$submitted)">
+                        Passwords must match.
+                    </p>
+                </div>
+                <div class="form-group" ng-class="{ 'has-success': userform.userType.$valid && (!userform.$pristine || userform.$submitted),
+                'has-error': userform.userType.$invalid && (!userform.$pristine || userform.$submitted) }">
+                    <label>User Type</label>
+                    <ui-select ng-required="true" name="userType" ng-model="vm.user.userType" theme="bootstrap">
+                        <ui-select-match placeholder="Select or search a user type in the list...">{{$select.selected.type}}</ui-select-match>
+                        <ui-select-choices repeat="item in vm.userType | filter: $select.search">
+                            <span ng-bind-html="item.type | highlight: $select.search"></span>
+                        </ui-select-choices>
+                    </ui-select>
+                    <p class="help-block" ng-show="userform.userType.$error.match && (!userform.$pristine || userform.$submitted)">
+                        User type must input.
+                    </p>
+                </div>
+
+                <div class="checkbox" ng-class="{ 'has-success': userform.terms.$valid && (!userform.$pristine || userform.$submitted),
+                'has-error': userform.terms.$invalid && (!userform.$pristine || userform.$submitted) }">
+                    <label>
+                        <input type="checkbox" ng-model="vm.terms"  type="terms" name="terms"  required>
+                        I agree with <a href="#">the terms and conditions</a>.
+                    </label>
+
+                    <p class="help-block" ng-show="(userform.terms.$error.required) && (!userform.$pristine || userform.$submitted)">
+                        Please check here.
+                    </p>
+                </div>
+                <button type="submit" class="btn btn-default" role="button">Continue</button>
+                <a class="btn btn-default" role="button"> Cancel</a>
+
+            </form>
+
+            <form class="form" name="form" ng-submit="vm.registerCompany(form)" novalidate ng-show="!vm.isUserSignup">
+                <div class="form-group" ng-class="{ 'has-success': form.name.$valid && vm.companySubmitted,
+                'has-error': form.name.$invalid && vm.companySubmitted }">
+                    <label>Company Name</label>
+
+                    <input type="text" name="name" class="form-control" ng-model="vm.company.name" required/>
+                    <p class="help-block" ng-show="form.name.$error.required && vm.companySubmitted">
+                        A name is required
+                    </p>
+                </div>
+                <div class="form-group" ng-class="{ 'has-success': form.businessType.$valid && vm.companySubmitted,
+                'has-error': form.businessType.$invalid && vm.companySubmitted }">
+                    <label>Business Type</label>
+                    <ui-select ng-required="true" name="businessType" ng-model="vm.company.businessType" theme="bootstrap">
+                        <ui-select-match placeholder="Select or search a business type in the list...">{{$select.selected.name}}</ui-select-match>
+                        <ui-select-choices repeat="item in vm.businessType | filter: $select.search">
+                            <span ng-bind-html="item.name | highlight: $select.search"></span>
+                        </ui-select-choices>
+                    </ui-select>
+                    <p class="help-block" ng-show="form.businessType.$error.match && vm.companySubmitted">
+                        User type must input.
+                    </p>
+                </div>
+
+                <div class="form-group" ng-class="{ 'has-success': form.taxId.$valid && vm.companySubmitted,
+                                            'has-error': form.taxId.$invalid && vm.companySubmitted }">
+                    <label>Tax ID</label>
+
+                    <input type="text" name="taxId" class="form-control" ng-model="vm.company.taxId" required/>
+                    <p class="help-block" ng-show="form.taxId.$error.required && vm.companySubmitted">
+                        A tax ID is required
+                    </p>
+                </div>
+
+                <div class="form-group" ng-class="{ 'has-success': form.address.$valid && vm.companySubmitted,
+                'has-error': form.address.$invalid && vm.companySubmitted }">
+                    <label>Address</label>
+
+                    <input type="text" name="address" class="form-control" ng-model="vm.company.address" required/>
+                    <p class="help-block" ng-show="form.address.$error.required && vm.companySubmitted">
+                        An address is required
+                    </p>
+                </div>
+
+                <div ng-if="vm.isTruckingorOwner(vm.user.userType.type) || vm.isFreight(vm.user.userType.type)  ">
+                    <div ng-if="vm.isFreight(vm.user.userType.type)" class="form-group" ng-class="{ 'has-success': form.brokerSCAC.$valid && vm.companySubmitted,
+                    'has-error': form.brokerSCAC.$invalid && vm.companySubmitted } ">
+                        <label>SCAC number</label>
+                        <input type="text" name="brokerSCAC" class="form-control" ng-model="vm.company.brokerInfo.SCAC" required/>
+                        <p class="help-block" ng-show="form.brokerSCAC.$error.required && vm.companySubmitted">
+                            A SCAC number is required
+                        </p>
+                    </div>
+
+                    <div ng-if="vm.isTruckingorOwner(vm.user.userType.type)">
+
+                        <div class="form-group" ng-class="{ 'has-success': form.SCAC.$valid && vm.companySubmitted,
+                        'has-error': form.SCAC.$invalid && vm.companySubmitted }">
+                            <label>SCAC number</label>
+
+                            <input type="text" name="SCAC" class="form-control" ng-model="vm.company.carrierInfo.SCAC" required/>
+                            <p class="help-block" ng-show="form.SCAC.$error.required && vm.companySubmitted">
+                                A SCAC number is required
+                            </p>
+                        </div>
+
+                        <div class="form-group" ng-class="{ 'has-success': form.mcNumber.$valid && vm.companySubmitted,
+                        'has-error': form.mcNumber.$invalid && vm.companySubmitted }">
+                            <label>MC number</label>
+
+                            <input type="text" name="mcNumber" class="form-control" ng-model="vm.company.carrierInfo.mcNumber" required/>
+                            <p class="help-block" ng-show="form.mcNumber.$error.required && vm.companySubmitted">
+                                A MC number is required
+                            </p>
+                        </div>
+
+                        <div class="form-group" ng-class="{ 'has-success': form.DOT.$valid && vm.companySubmitted,
+                        'has-error': form.DOT.$invalid && vm.companySubmitted }">
+                            <label>DOT number</label>
+
+                            <input type="text" name="DOT" class="form-control" ng-model="vm.company.carrierInfo.DOT" required/>
+                            <p class="help-block" ng-show="form.DOT.$error.required && vm.companySubmitted">
+                                A DOT number is required
+                            </p>
+                        </div>
+
+                        <div class="form-group" ng-class="{ 'has-success': form.publicLiabilityinsuranceProvider.$valid && vm.companySubmitted,
+                        'has-error': form.publicLiabilityinsuranceProvider.$invalid && vm.companySubmitted }">
+                            <label>Public Liability Insurance Provider</label>
+
+                            <input type="text" name="publicLiabilityinsuranceProvider" class="form-control" ng-model="vm.company.carrierInfo.publicLiabilityinsuranceProvider" required/>
+                            <p class="help-block" ng-show="form.publicLiabilityinsuranceProvider.$error.required && vm.companySubmitted">
+                                A Public Liability Insurance Provider is required
+                            </p>
+                        </div>
+
+                        <div class="form-group" ng-class="{ 'has-success': form.cargoInsuranceProvider.$valid && vm.companySubmitted,
+                        'has-error': form.cargoInsuranceProvider.$invalid && vm.companySubmitted }">
+                            <label>Cargo Insurance Provider</label>
+
+                            <input type="text" name="cargoInsuranceProvider" class="form-control" ng-model="vm.company.carrierInfo.cargoInsuranceProvider" required/>
+                            <p class="help-block" ng-show="form.cargoInsuranceProvider.$error.required && vm.companySubmitted">
+                                A Cargo Insurance Provider is required
+                            </p>
+                        </div>
+
+                        <div class="form-group" ng-class="{ 'has-success': form.hazmat.$valid && vm.companySubmitted,
+                        'has-error': form.hazmat.$invalid && vm.companySubmitted }">
+                            <label>Hazmat</label>
+
+                            <input type="checkbox" name="hazmat" ng-model="vm.company.carrierInfo.hazmat" required/>
+                            <p class="help-block" ng-show="form.hazmat.$error.required && vm.companySubmitted">
+                                A Hazmat is required
+                            </p>
+                        </div>
+
+                        <div class="form-group" ng-class="{ 'has-success': form.operationAreas.$valid && vm.companySubmitted,
+                        'has-error': form.operationAreas.$invalid && vm.companySubmitted }">
+                            <label for="operationAreas">Area of Operation</label>
+                            <ui-select name="operationAreas" ng-required="true" multiple ng-model="vm.company.carrierInfo.operationAreas" sortable="true" close-on-select="false">
+                                <ui-select-match placeholder="Select or search a user type in the list...">{{$item.name}}</ui-select-match>
+                                <ui-select-choices repeat="item in vm.operationAreas | filter: $select.search">
+                                    <span ng-bind-html="item.name | highlight: $select.search"></span>
+                                </ui-select-choices>
+                            </ui-select>
+                        </div>
+                    </div>
+                </div>
+
+                <button type="submit" class="btn btn-default" role="button">Register</button>
+                <a class="btn btn-default" role="button"> Cancel</a>
+            </form>
+        </div>
     </div>
-    <div class="col-sm-12">
-      <form class="form" name="form" ng-submit="vm.register(form)" novalidate>
-
-        <div class="form-group" ng-class="{ 'has-success': form.name.$valid && vm.submitted,
-                                            'has-error': form.name.$invalid && vm.submitted }">
-          <label>Name</label>
-
-          <input type="text" name="name" class="form-control" ng-model="vm.user.name"
-                 required/>
-          <p class="help-block" ng-show="form.name.$error.required && vm.submitted">
-            A name is required
-          </p>
-        </div>
-
-        <div class="form-group" ng-class="{ 'has-success': form.email.$valid && vm.submitted,
-                                            'has-error': form.email.$invalid && vm.submitted }">
-          <label>Email</label>
-
-          <input type="email" name="email" class="form-control" ng-model="vm.user.email"
-                 required
-                 mongoose-error/>
-          <p class="help-block" ng-show="form.email.$error.email && vm.submitted">
-            Doesn't look like a valid email.
-          </p>
-          <p class="help-block" ng-show="form.email.$error.required && vm.submitted">
-            What's your email address?
-          </p>
-          <p class="help-block" ng-show="form.email.$error.mongoose">
-            {{ vm.errors.email }}
-          </p>
-        </div>
-
-        <div class="form-group" ng-class="{ 'has-success': form.email.$valid && vm.submitted,
-                                            'has-error': form.email.$invalid && vm.submitted }">
-          <label>Phone</label>
-
-          <input type="text" name="phone" class="form-control" ng-model="vm.user.phone"
-                 required
-                 mongoose-error/>
-          <p class="help-block" ng-show="form.phone.$error.phone && vm.submitted">
-            Doesn't look like a valid phone.
-          </p>
-          <p class="help-block" ng-show="form.phone.$error.required && vm.submitted">
-            What's your phone number?
-          </p>
-          <p class="help-block" ng-show="form.phone.$error.mongoose">
-            {{ vm.errors.email }}
-          </p>
-        </div>
-
-
-
-
-        <div class="form-group" ng-class="{ 'has-success': form.password.$valid && vm.submitted,
-                                            'has-error': form.password.$invalid && vm.submitted }">
-          <label>Password</label>
-
-          <input type="password" name="password" class="form-control" ng-model="vm.user.password"
-                 ng-minlength="3"
-                 required
-                 mongoose-error/>
-          <p class="help-block"
-             ng-show="(form.password.$error.minlength || form.password.$error.required) && vm.submitted">
-            Password must be at least 3 characters.
-          </p>
-          <p class="help-block" ng-show="form.password.$error.mongoose">
-            {{ vm.errors.password }}
-          </p>
-        </div>
-
-        <div class="form-group" ng-class="{ 'has-success': form.confirmPassword.$valid && vm.submitted,
-                                            'has-error': form.confirmPassword.$invalid && vm.submitted }">
-          <label>Confirm Password</label>
-          <input type="password" name="confirmPassword" class="form-control" ng-model="vm.user.confirmPassword"
-                 match="vm.user.password"
-                 ng-minlength="3" required/>
-          <p class="help-block"
-             ng-show="form.confirmPassword.$error.match && vm.submitted">
-            Passwords must match.
-          </p>
-        </div>
-        <div class="form-group" ng-class="{ 'has-success': form.email.$valid && vm.submitted,
-                                            'has-error': form.email.$invalid && vm.submitted }">
-          <label>Type</label>
-<pre>
-    Shipper/Consignee (BCO) --> role: user
-    Trucking Company        --> role: carrier
-    Freight Forwarder       --> role: user
-    Customs Broker (BCO)    --> role: user
-    Freight Broker          --> role: user
-    Container Terminal (BCO)--> role: user
-    Chassis Provider (BCO)  --> role: user
-    Container Leasing Company (BCO) --> role: user
-</pre>
-
-        </div>
-
-        
-        <p><input type="checkbox"> I agree with <a href="#">the terms and conditions</a>.</p>
-        <a class="btn btn-default"  role="button">Continue</a>
-        <a class="btn btn-default"  role="button"> Cancel</a>
-
-      </form>
-    </div>
-  </div>
-  <hr>
+    <hr>
 </div>
 
 <pre>

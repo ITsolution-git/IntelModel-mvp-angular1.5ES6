@@ -17,6 +17,12 @@ export function UserResource($resource) {
       params: {
         id: 'me'
       }
+    },
+    getOther: {
+      method: 'GET'
+    },
+    update: {
+        method: 'PUT',
     }
   });
 }

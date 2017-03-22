@@ -74,13 +74,17 @@ export function AuthService($location, $http, $cookies, $q, appConfig, Util, Use
      * @param  {Function} callback - function(error, user)
      * @return {Promise}
      */
-    createUser(user, callback) {
+    createUser(user, isFromAdmin, callback) {
       return User.save(user, function(data) {
-        $cookies.put('token', data.token);
-        currentUser = User.get();
+        if(!isFromAdmin){
+          $cookies.put('token', data.token);
+          currentUser = User.get();
+        }
         return safeCb(callback)(null, user);
       }, function(err) {
-        Auth.logout();
+        if(!isFromAdmin){
+          Auth.logout();
+        }
         return safeCb(callback)(err);
       })
         .$promise;
@@ -127,6 +131,22 @@ export function AuthService($location, $http, $cookies, $q, appConfig, Util, Use
         });
     },
 
+    /**
+     * update the user
+     *
+     * @param  {Object}   user     - user info
+     * @param  {Function} callback - function(error, user)
+     * @return {Promise} 
+     */
+    updateUser(user, callback) {
+        return User.update(user, function(data) {
+            return safeCb(callback)(data, user);
+        }, function(err) {
+            Auth.logout();
+            return safeCb(callback)(err);
+        })
+        .$promise;
+    },
     /**
      * Gets all available info on a user
      *

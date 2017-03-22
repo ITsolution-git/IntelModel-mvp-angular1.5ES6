@@ -34,6 +34,8 @@ import ImportJobComponent from './jobs/import-job/import-job.component';
 import DispatchComponent from './dispatch/dispatch.component';
 import AssignmentComponent from './assignment/assignment.component';
 import ReportsComponent from './reports/reports.component';
+import _Company from '../components/company/company.module';
+import _Location from '../components/location/location.module';
 import {ngTableModule} from 'ng-table';
 import 'angular-timeline';
 import 'ui-select';
@@ -46,7 +48,8 @@ angular.module('intelmodalApp', [ngCookies, ngResource, ngSanitize, 'btford.sock
   DispatchComponent,
   AssignmentComponent,
   ReportsComponent,
-  Playground, navbar, footer, main, constants, socket, util
+  Playground, navbar, footer, main, constants, socket, util,
+  _Company, _Location
 ])
   .config(routeConfig)
   .run(function($rootScope, $location, Auth) {

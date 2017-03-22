@@ -1,18 +1,145 @@
+<script type="text/ng-template" id="newUser.html">
+    <div class="modal-header">
+        <h3 class="modal-title" id="modal-title">Add new User</h3>
+    </div>
+    <div class="modal-body" id="modal-body">
+
+      <form class="form" name="userform"  novalidate>
+
+          <div class="form-group" ng-class="{ 'has-success': userform.name.$valid && (!userform.$pristine || userform.$submitted),
+                                      'has-error': userform.name.$invalid && (!userform.$pristine || userform.$submitted) }">
+              <label>Name</label>
+
+              <input type="text" name="name" class="form-control" ng-model="newuserModal.user.name" required/>
+              <p class="help-block" ng-show="userform.name.$error.required && (!userform.$pristine || userform.$submitted)">
+                  A name is required
+              </p>
+          </div>
+
+          <div class="form-group" ng-class="{ 'has-success': userform.email.$valid && (!userform.$pristine || userform.$submitted),
+                                      'has-error': userform.email.$invalid && (!userform.$pristine || userform.$submitted) }">
+              <label>Email</label>
+
+              <input type="email" name="email" class="form-control" ng-model="newuserModal.user.email" required mongoose-error
+              ng-change="userform['email'].$setValidity('mongoose', true)"/>
+              <p class="help-block" ng-show="userform.email.$error.email && (!userform.$pristine || userform.$submitted)">
+                  Doesn't look like a valid email.
+              </p>
+              <p class="help-block" ng-show="userform.email.$error.required && (!userform.$pristine || userform.$submitted)">
+                  What's your email address?
+              </p>
+
+              <p class="help-block" ng-show="userform.email.$invalid && (!userform.$pristine || userform.$submitted)">
+                  {{ newuserModal.errors.email }}
+              </p>
+          </div>
+
+          <div class="form-group" ng-class="{ 'has-success': userform.phone.$valid && (!userform.$pristine || userform.$submitted),
+                                      'has-error': userform.phone.$invalid && (!userform.$pristine || userform.$submitted) }">
+              <label>Phone</label>
+
+              <input type="text" name="phone" class="form-control" ng-model="newuserModal.user.phone" required mongoose-error/>
+              <p class="help-block" ng-show="userform.phone.$error.phone && (!userform.$pristine || userform.$submitted)">
+                  Doesn't look like a valid phone.
+              </p>
+              <p class="help-block" ng-show="userform.phone.$error.required && (!userform.$pristine || userform.$submitted)">
+                  What's your phone number?
+              </p>
+              <p class="help-block" ng-show="userform.phone.$error.mongoose">
+                  {{ newuserModal.errors.phone }}
+              </p>
+          </div>
+
+          <div class="form-group" ng-class="{ 'has-success': userform.password.$valid && (!userform.$pristine || userform.$submitted),
+                                      'has-error': userform.password.$invalid && (!userform.$pristine || userform.$submitted) }">
+              <label>Password</label>
+
+              <input type="password" name="password" class="form-control" ng-model="newuserModal.user.password" ng-minlength="3" required mongoose-error/>
+              <p class="help-block" ng-show="(userform.password.$error.minlength || userform.password.$error.required) && (!userform.$pristine || userform.$submitted)">
+                  Password must be at least 3 characters.
+              </p>
+              <p class="help-block" ng-show="userform.password.$error.mongoose">
+                  {{ newuserModal.errors.password }}
+              </p>
+          </div>
+
+          <div class="form-group" ng-class="{ 'has-success': userform.confirmPassword.$valid && (!userform.$pristine || userform.$submitted),
+                                      'has-error': userform.confirmPassword.$invalid && (!userform.$pristine || userform.$submitted) }">
+              <label>Confirm Password</label>
+              <input type="password" name="confirmPassword" class="form-control" ng-model="newuserModal.user.confirmPassword" match="newuserModal.user.password" ng-minlength="3" required/>
+              <p class="help-block" ng-show="userform.confirmPassword.$error.match && (!userform.$pristine || userform.$submitted)">
+                  Passwords must match.
+              </p>
+          </div>
+      </form>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-primary" type="button" ng-click="newuserModal.onSave(userform)">OK</button>
+        <button class="btn btn-warning" type="button" ng-click="newuserModal.onCancel()">Cancel</button>
+    </div>
+</script>
+
 <div class="container">
   <p>The delete user and user index api routes are restricted to users with the 'admin' role.</p>
-  <ul class="list-group user-list">
-    <li class="list-group-item" ng-repeat="user in admin.users">
-	    <div class="user-info">
-	        <strong>{{user.name}}</strong><br>
-	        <span class="text-muted">{{user.email}}</span>
-	    </div>
-        <a ng-click="admin.delete(user)" class="trash"><span class="fa fa-trash fa-2x"></span></a>
-    </li>
-  </ul>
-    <a class="btn btn-default"  role="button">Register More Users</a>
-    <br>
-</div>
+ 
+  <table class="table table-responsive table-bordered" id="company-container">
+    <thead> 
+      <tr>
+        <th></th>
+        <th>Company Name</th> 
+        <th>Address</th>
+        <th>Type</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat-start="company in admin.companies" class="collapsed">
+        <td ng-click="admin.expand($event)">
+          <i class="fa fa-plus" aria-hidden="true"></i>
+        </td>
+        <td>{{company.name}}</td>
+        <td>{{company.address}}</td>
+        <td>{{company.type}}</td>
+        <td>
+          <a ng-click="admin.deleteCompany(company)" class="trash"><span class="fa fa-trash fa-2x"></span></a>
+          <a ng-show="!company.active" ng-click="admin.activateCompany(company)"><span class="fa fa-check fa-2x"></span></a>
+          <a ng-show="company.active" ng-click="admin.deactivateCompany(company)"><span class="fa fa-times fa-2x"></span></a>
+        </td>
+      </tr>
+      <tr ng-repeat-end style="background-color:#f8f8f8" class="">
+        <td colspan="5">
+          <h4> Users </h4>
+          <table class="table" style="background-color:#f8f8f8">
+            <thead>
+              <th>Username</th>
+              <th>Email</th>
+              <th>Role</th>
+              <th>Primary</th>
+              <th>Actions</th>
+            </thead>
+            <tbody>
+              <tr ng-repeat="user in admin.users |  filter:{companyId: company._id}">
+                <td>{{user.name}}</td>
+                <td>{{user.email}}</td>
+                <td>{{user.role}}</td>
+                <td>{{user.primary? 'Primary': ''}}</td>
+                <td>
+                  <a ng-show="!user.primary" ng-click="admin.deleteUser(user)" class="trash"><span class="fa fa-trash fa-2x"></span></a>
+                  <a ng-show="!user.authorized" ng-click="admin.activateUser(user)"><span class="fa fa-check fa-2x"></span></a>
+                  <a ng-show="user.authorized" ng-click="admin.deactivateUser(user)"><span class="fa fa-times fa-2x"></span></a>
+                </td>
+              </tr>
+            </tbody>
+          </table>
 
+          <button type="button" class="btn btn-default pull-right" ng-click="admin.openUserModal(company)">Add Additional User</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <a class="btn btn-default pull-right" href="/signup/admin" role="button">Register Company</a>
+  <br>
+</div>
 <pre>
 
 Use cases:

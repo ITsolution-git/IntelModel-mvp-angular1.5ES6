@@ -1,6 +1,7 @@
 'use strict';
 
 import User from './user.model';
+import Company from '../company/company.model';
 import config from '../../config/environment';
 import jwt from 'jsonwebtoken';
 
@@ -42,11 +43,42 @@ export function create(req, res) {
       var token = jwt.sign({ _id: user._id }, config.secrets.session, {
         expiresIn: 60 * 60 * 5
       });
-      res.json({ token });
+      res.json({ token: token, user: user });
     })
     .catch(validationError(res));
 }
 
+/**
+ * Update a user
+ */
+export function update(req, res) {
+  delete req.body._id;
+  console.log(req.body); 
+  return User.findOneAndUpdate({_id: req.params.id}, req.body).exec()
+
+  .then(user => {
+    if(!user) {
+
+      return res.status(404).end();
+    }
+    res.json(user);
+  })
+
+  // .then(user => {
+  //   if(!user) {
+  //     return res.status(404).end();
+  //   }
+  //   return Company.findOne({_id: user.companyId})
+  // })
+  // .then(company => {
+  //   company.users.push(user._id);
+  //   return company.save();    
+  // })
+  // .then(company => {
+  //   res.json(user);
+  // })
+  .catch(handleError(res));
+}
 /**
  * Get a single user
  */

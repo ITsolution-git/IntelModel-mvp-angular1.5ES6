@@ -18,7 +18,7 @@ export default function routes($routeProvider) {
         $location.path(referrer);
       }
     })
-    .when('/signup', {
+    .when('/signup/:admin', {
       template: require('./signup/signup.html'),
       controller: 'SignupController',
       controllerAs: 'vm'
